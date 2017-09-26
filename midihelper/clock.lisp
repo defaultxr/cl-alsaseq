@@ -142,6 +142,10 @@
   (list :EVENT-TYPE :SND_SEQ_EVENT_NOTEOFF
         :EVENT-DATA `(VELOCITY ,velocity NOTE ,note CHANNEL ,channel)))
 
+(defun ev-pgmchange (channel program)
+  (list :EVENT-TYPE :SND_SEQ_EVENT_PGMCHANGE
+        :EVENT-DATA `(PARAM 0 VALUE ,program CHANNEL ,channel)))
+
 (defun ev-tick (&optional songpos)
   `(:EVENT-TYPE :SND_SEQ_EVENT_CLOCK ,@(if songpos
                                            (list :songpos

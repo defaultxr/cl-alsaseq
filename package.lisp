@@ -51,6 +51,7 @@
            :send-event
            :ev-noteon
            :ev-noteoff
+           :ev-pgmchange
            :ev-tick
            :ev-microtick
            :ev-start
