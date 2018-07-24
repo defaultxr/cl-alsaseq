@@ -58,6 +58,7 @@
            :ev-stop
            :ev-continue
            :ev-songpos
+           :ev-cc
            ))
 
 (defpackage #:midiloops

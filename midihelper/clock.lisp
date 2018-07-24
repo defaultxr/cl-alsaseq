@@ -168,3 +168,8 @@
 (defun ev-songpos (songpos)
   (list :EVENT-TYPE :SND_SEQ_EVENT_SONGPOS
         :EVENT-DATA `(VALUE ,songpos PARAM 0 CHANNEL 0)))
+
+(defun ev-cc (channel param value)
+  (list :EVENT-TYPE :SND_SEQ_EVENT_CONTROLLER
+        :EVENT-DATA `(VALUE ,value PARAM ,param CHANNEL ,channel)))
+
