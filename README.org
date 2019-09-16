@@ -3,14 +3,33 @@
 
 This is cl-alsaseq, a Common Lisp library for accessing the ALSA MIDI interface. With it, you can send MIDI messages to any program or device that is supported by ALSA.
 
-This library was originally written by Richard Venn, however after he deleted his GitHub account (and the original repo for this project with it), I (modula t.) re-hosted it. I'm also making a few improvements here and there and may do a major cleanup of this system in the future.
+This library was originally written by Richard Venn, however after he deleted his GitHub account (and the original repo for this project with it), I (modula t.) re-hosted it.
+
+I'm making a few improvements here and there to the system, however I will not be adding this to Quicklisp until I've done a major cleanup of the system, which will likely result in the API being much simpler, but incompatible.
 
 * Example usage
 
 #+BEGIN_SRC lisp
   (ql:quickload :cl-alsaseq) ;; Load the system.
 
-  (midihelper:start-midihelper) ;; Start the ALSA MIDI client.
+  ;; define a basic handler function for MIDI input
+  (defun midi-map (messages)
+    (dolist (message messages)
+      (let* ((event-type (getf message :event-type))
+             (event-data (getf message :event-data))
+             (source (car (getf message :source)))
+             (destination (car (getf message :dest))))
+        (declare (ignorable source destination))
+        (format t "~a: ~s~%"
+                (case event-type
+                  (:snd_seq_event_noteon "Note on")
+                  (:snd_seq_event_noteoff "Note off")
+                  (:snd_seq_event_controller "CC")
+                  (t event-type))
+                event-data))))
+
+  ;; Start the ALSA MIDI client with midi-map function as input handler.
+  (midihelper:start-midihelper :master 96 'midi-map)
 
   ;; ...Then connect the "CL" ALSA MIDI source to the destination of your choice.
   ;; I usually use Qjackctl to manage MIDI connections.
