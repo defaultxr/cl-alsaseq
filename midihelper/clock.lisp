@@ -65,7 +65,8 @@
        (! tick-chan (ev-start))
        (setf ticker-state :running))
       ((property :EVENT-TYPE :SND_SEQ_EVENT_CLOCK)
-       (warn "received clock signal before control signal whilst in stopped state, ignoring"))))
+       ;; (warn "received clock signal before control signal whilst in stopped state, ignoring")
+       )))
 
   (defun ticker (tick-chan ctrl-chan master-slave ppqn)
     "optional master clock"
