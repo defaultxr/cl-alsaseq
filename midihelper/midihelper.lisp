@@ -12,7 +12,9 @@
   (assert (or (eq master-slave :master)
               (eq master-slave :slave)))
   (alexandria:doplist (key val (inspect-midihelper))
-    (assert (null val)))
+    (when val
+      (warn "At least one midihelper thread already appears to be running; to restart, run #'stop-midihelper first")
+      (return-from start-midihelper nil)))
   (drain-channel *clock-ochan*)
   (drain-channel *clock-ctrl-chan*)
   (start-reader *clock-ctrl-chan* reader-map)
