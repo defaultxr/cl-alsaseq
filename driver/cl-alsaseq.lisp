@@ -104,11 +104,12 @@
     (setf (mem-ref client :uchar) *client )))
 
 (defmacro with-midi-event ((var data type
-                                &key (queue snd_seq_queue_direct))
+                                &key (queue snd_seq_queue_direct) (flags 0))
                            &body body)
   `(let ((,var (convert-to-foreign (list
                                     'type ,type
                                     'queue ,queue
+                                    'flags ,flags
                                     )
                                    '(:struct snd_seq_event_t))))
      (with-foreign-slots (((:pointer data))
