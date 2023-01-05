@@ -38,7 +38,7 @@
                                               (equal event-type
                                                      :snd_seq_event_continue))))
      (send-queue-ctrl 0 event-type seq port))
-     (_ (format t "unknown event ~S~%" description))))
+    (_ (format t "unknown event ~S~%" description))))
 
 (defun start-writer ()
   (assert (null **seq))
@@ -73,15 +73,15 @@
 		    (let ((port (open-port "port0" thread-seq :output)))
 		      (handler-case
 			  (loop
-			     (let ((message (? *writer-ichan*)))
-			       (restart-case
-				   (%send-event message
-						port
-						thread-seq)
-				 (carry-on-writing ()))))
+                            (let ((message (? *writer-ichan*)))
+                              (restart-case
+                                  (%send-event message
+                                               port
+                                               thread-seq)
+                                (carry-on-writing ()))))
 			(stop-thread ()))))
-		    (setf *writer-thread* nil))))
-	   :name "midihelper writer")))
+               (setf *writer-thread* nil))))
+         :name "midihelper writer")))
 
 (defun stop-writer-thread ()
   (bt:interrupt-thread

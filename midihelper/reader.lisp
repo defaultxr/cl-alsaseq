@@ -10,8 +10,8 @@
 (defun drain-channel (chan)
   (loop (pri-alt ((? chan res)
                   (print res))
-                 (otherwise
-                  (return-from drain-channel)))))
+          (otherwise
+           (return-from drain-channel)))))
 
 (define-condition stop-thread (error)
   ())
@@ -53,7 +53,7 @@
 (defmacro macromatch (arg &body clauses)
   `(match ,arg
      ,@(mapcar #'macroexpand
-              clauses)))
+               clauses)))
 
 (defun midi-input (seq clock-ichan reader-ochan reader-map)
   (let ((mess (recv seq)))
@@ -79,12 +79,12 @@
                                    (with-seq (seq :name "CL")
                                      (open-port "in" seq :input)
                                      (loop
-                                        (restart-case
-                                            (midi-input seq
-                                                        clock-ichan
-                                                        *reader-ochan*
-                                                        reader-map)
-                                          (carry-on-reading ()))))
+                                       (restart-case
+                                           (midi-input seq
+                                                       clock-ichan
+                                                       *reader-ochan*
+                                                       reader-map)
+                                         (carry-on-reading ()))))
                                  (stop-thread ()))
                             (setf *reader-thread* nil)))
                         :name "simple-midi-reader")))
@@ -92,4 +92,4 @@
 (defun stop-reader ()
   (bt:interrupt-thread
    *reader-thread* (lambda ()
-                      (error 'stop-thread))))
+                     (error 'stop-thread))))
