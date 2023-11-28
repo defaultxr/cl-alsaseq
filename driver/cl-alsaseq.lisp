@@ -1,6 +1,6 @@
 (in-package #:cl-alsaseq)
 
-(load-foreign-library "libasound.so")
+(load-foreign-library '(:or "libasound.so.2" "libasound.so"))
 
 (defun open-seq (client-name)
   "return a new alsa sequencer object named <name>"
