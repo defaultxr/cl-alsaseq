@@ -59,7 +59,7 @@
            :ev-continue
            :ev-songpos
            :ev-cc
-           ))
+	   :ev-pitchbend))
 
 (defpackage #:midiloops
   (:use :cl :cl-alsaseq :midihelper :optima :optima.extra :calispel)
