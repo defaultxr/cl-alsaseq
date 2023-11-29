@@ -171,3 +171,6 @@
   (list :EVENT-TYPE :SND_SEQ_EVENT_CONTROLLER
         :EVENT-DATA `(VALUE ,value PARAM ,param CHANNEL ,channel)))
 
+(defun ev-pitchbend (channel value)
+  (list :EVENT-TYPE :SND_SEQ_EVENT_PITCHBEND
+	:EVENT-DATA `(VALUE ,value PARAM 0 CHANNEL ,channel)))
