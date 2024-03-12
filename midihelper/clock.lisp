@@ -2,7 +2,7 @@
 
 (defvar *clock-ctrl-chan* (make-nonblock-buf-channel))
 
-(defvar *clock-ochan*  (make-nonblock-buf-channel))
+(defvar *clock-ochan* (make-nonblock-buf-channel))
 
 (defvar *tick-time* 0.015)
 
@@ -84,10 +84,10 @@
                  (match ctrl
                    ((property :EVENT-TYPE :SND_SEQ_EVENT_STOP)
                     (setf ticker-state :stopped))))
-         (otherwise
-          (match ppqn
-            (24 (lores-semiquaver tick-chan *tick-time*))
-            (96 (hires-semiquaver tick-chan *tick-time*))))))
+                (otherwise
+                 (match ppqn
+                   (24 (lores-semiquaver tick-chan *tick-time*))
+                   (96 (hires-semiquaver tick-chan *tick-time*))))))
       ((list :running :slave)
        (match (? ctrl-chan)
          ((property :EVENT-TYPE :SND_SEQ_EVENT_STOP)

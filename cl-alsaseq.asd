@@ -3,7 +3,7 @@
 (asdf:defsystem #:cl-alsaseq
   :name "cl-alsaseq"
   :description "Common Lisp bindings to ALSA MIDI."
-  :author "Rick Venn <richard.venn@gmail.com>"
+  :author "Rick Venn <richard.venn at gmail dot com>"
   :maintainer "modula t. <modula-t at pm dot me>"
   :license "GPL"
   :depends-on (#:cffi #:calispel #:optima #:let-over-lambda)

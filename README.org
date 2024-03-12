@@ -19,7 +19,7 @@ I'm making a few improvements here and there to the system, however I will likel
              (source (car (getf message :source)))
              (destination (car (getf message :dest))))
         (declare (ignorable source destination))
-        (format t "~a: ~s~%"
+        (format t "~A: ~S~%"
                 (case event-type
                   (:snd_seq_event_noteon "Note on")
                   (:snd_seq_event_noteoff "Note off")
