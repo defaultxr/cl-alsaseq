@@ -4,9 +4,13 @@ This is cl-alsaseq, a Common Lisp library for accessing the ALSA MIDI interface.
 
 This library was originally written by Richard Venn, however after he deleted his GitHub account (and the original repo for this project with it), I (modula t.) re-hosted it.
 
-I'm making a few improvements here and there to the system, however I will likely not be adding this project to Quicklisp, as I would like to produce a better, cleaner version from scratch. The API of this new system would be much simpler and easier to use, but incompatible.
+I'm making a few improvements here and there to the system, however most major improvements will instead be done as part of [[https://github.com/defaultxr/cl-alsa-midi][cl-alsa-midi]].
 
-* Example usage
+If you're just using the library for your own projects and need something stable, use cl-alsaseq. cl-alsaseq's API should remain stable, but it will not be submitted to Quicklisp.
+
+If you're intending to make improvements to the code of the library, consider adding them to [[https://github.com/defaultxr/cl-alsa-midi][cl-alsa-midi]] instead, as I intend to deprecate cl-alsaseq in favor of it, as it (and its API) will be vastly simpler and its code should be much improved. After cl-alsa-midi's API is improved and stabilized, it will be submitted to Quicklisp.
+
+* Example
 
 #+BEGIN_SRC lisp
   (ql:quickload :cl-alsaseq) ; Load the system.
